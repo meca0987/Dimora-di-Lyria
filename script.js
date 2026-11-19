@@ -17,10 +17,12 @@ const diaryPages = {
     text: "Credevo che crescere significasse diventare libera. Avevo imparato a nascondere certe cose, a sorridere quando era necessario, a non fare domande. E poi arrivò qualcuno che mi fece credere, per un breve momento, che forse il mondo potesse essere gentile."
   },
 
-  adulthood: {
-    title: "La camera silenziosa",
-    text: "Le pareti sembrano avvicinarsi. Le notti si confondono, i pensieri si ripetono, le cose perdono il loro posto. Ho provato a mettere ordine. Ho provato a essere ragionevole. Ma la mia mente non sembra più una stanza nella quale io possa abitare da sola."
-  },
+
+adulthood: {
+  title: "La donna nello specchio",
+  text: "Non so più da quanto tempo evito gli specchi. È curioso. Un tempo mi fermavo davanti a loro per ore, cercando qualcosa che potesse piacermi. Adesso li copro. Non sopporto quella donna che mi restituiscono. Ha il mio volto, i miei capelli, i miei occhi... eppure non riesco a riconoscerla. La casa è diventata silenziosa. Le persone parlano, entrano, escono, mi rivolgono domande. Io rispondo quando è necessario. Sorrido quando è opportuno. Ho imparato a imitare una donna serena con una precisione quasi ammirevole. Ci sono giorni in cui non apro le tende. Altri in cui lavo le mani fino a farle arrossare. Le lettere restano sul tavolo, le medicine accanto al letto, i fiori appassiscono nei vasi. Mi dicono che dovrei reagire. Che dovrei uscire, distrarmi, vivere. Ma ditemi... come si fa a vivere quando perfino la propria immagine sembra appartenere a un'estranea?"
+},
+
 
   marriage: {
     title: "Il matrimonio",
