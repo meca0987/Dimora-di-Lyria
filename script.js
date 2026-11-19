@@ -71,6 +71,13 @@ function openDiary(pageId) {
 function closeDiary() {
   diaryModal.classList.remove("open");
   diaryModal.setAttribute("aria-hidden", "true");
+
+  if (
+    martyrdomRead &&
+    document.getElementById("martyrdom").classList.contains("active")
+  ) {
+    epilogueDoor.style.display = "block";
+  }
 }
 
 document.getElementById("enter-house").addEventListener("click", () => {
@@ -114,14 +121,23 @@ document.getElementById("restart").addEventListener("click", () => {
   closeDiary();
   showScene("intro");
 });
+/* EPILOGO: accesso dopo aver letto il martirio */
 
-/* L'epilogo si raggiunge solo dalla sala del martirio. */
+let martyrdomRead = false;
+
 const epilogueDoor = document.createElement("button");
 epilogueDoor.className = "ornate-button";
 epilogueDoor.id = "epilogue-door";
 epilogueDoor.textContent = "Oltre l'ultima pagina";
-epilogueDoor.style.cssText =
-  "position:absolute;z-index:5;bottom:15%;left:50%;transform:translateX(-50%);display:none";
+
+epilogueDoor.style.cssText = `
+  position: absolute;
+  z-index: 6;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+`;
 
 document.getElementById("martyrdom").appendChild(epilogueDoor);
 
@@ -129,10 +145,10 @@ epilogueDoor.addEventListener("click", () => {
   showScene("epilogue");
 });
 
-/* Mostra la porta dell'epilogo solo dopo aver aperto il diario del martirio. */
-document.querySelector('[data-diary="martyrdom"]').addEventListener("click", () => {
-  epilogueDoor.style.display = "block";
-});
+document.querySelector('[data-diary="martyrdom"]')
+  .addEventListener("click", () => {
+    martyrdomRead = true;
+  });
 
 document.getElementById("intro").classList.add("active");
 document.querySelector(".bottom-nav").style.display = "none";
