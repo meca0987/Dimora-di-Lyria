@@ -1,11 +1,215 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>La Dimora di Lyria</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100b0d">
+  <title>La Dimora di Lyria | La Vedova Cremisi</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <h1>La Dimora di Lyria</h1>
-  <p>La casa attende.</p>
+  <div id="dust" aria-hidden="true"></div>
+
+  <main id="experience">
+
+    <!-- APERTURA: LA CITTA' -->
+    <section id="intro" class="scene active">
+      <img
+        class="scene-image"
+        src="images/Città gotica in rovina al chiaro di luna.png"
+        alt="Una città gotica in rovina sotto la luna">
+
+      <div class="intro-overlay">
+        <p class="eyebrow">Una memoria sepolta nella cenere</p>
+        <h1>La Dimora di Lyria</h1>
+        <p class="subtitle">La Vedova Cremisi</p>
+        <button id="enter-house" class="ornate-button">
+          Varca la soglia
+        </button>
+        <p class="hint">La città non ricorda. La casa, invece, sì.</p>
+      </div>
+    </section>
+
+    <!-- SALONE PRINCIPALE -->
+    <section id="hall" class="scene">
+      <img
+        class="scene-image"
+        src="images/Salone gotico in rovina con scia cremisi.png"
+        alt="Il salone centrale della dimora">
+
+      <div class="scene-heading">
+        <p class="eyebrow">La dimora degli ultimi ricordi</p>
+        <h2>Il Salone</h2>
+      </div>
+
+      <div class="hall-hotspots">
+        <button class="hotspot" style="--x:18%;--y:58%"
+          data-room="childhood" aria-label="Infanzia">
+          <span>Infanzia</span>
+        </button>
+
+        <button class="hotspot" style="--x:37%;--y:43%"
+          data-room="adolescence" aria-label="Adolescenza">
+          <span>Adolescenza</span>
+        </button>
+
+        <button class="hotspot central" style="--x:50%;--y:72%"
+          data-room="martyrdom" aria-label="Martirio">
+          <span>Martirio</span>
+        </button>
+
+        <button class="hotspot" style="--x:66%;--y:43%"
+          data-room="adulthood" aria-label="Età adulta e matrimonio">
+          <span>Età adulta</span>
+        </button>
+
+        <button class="hotspot" style="--x:83%;--y:58%"
+          data-room="epilogue" aria-label="Epilogo">
+          <span>Epilogo</span>
+        </button>
+      </div>
+
+      <p class="hall-instruction">
+        Cinque soglie. Cinque frammenti. Nessun ricordo è innocente.
+      </p>
+    </section>
+
+    <!-- STANZA DELL'INFANZIA -->
+    <section id="childhood" class="scene room">
+      <img class="scene-image"
+        src="images/Cameretta gotica illuminata dalla luna.png"
+        alt="La cameretta dell'infanzia">
+
+      <div class="room-title">
+        <p class="eyebrow">Primo frammento</p>
+        <h2>L'infanzia</h2>
+      </div>
+
+      <button class="diary-paper" data-diary="childhood">
+        <span class="paper-label">Pagina ritrovata</span>
+        <span class="paper-symbol">✧</span>
+        <span>Leggi il ricordo</span>
+      </button>
+    </section>
+
+    <!-- STANZA DELL'ADOLESCENZA -->
+    <section id="adolescence" class="scene room">
+      <img class="scene-image"
+        src="images/Camera gotica di rose appassite.png"
+        alt="La stanza dell'adolescenza">
+
+      <div class="room-title">
+        <p class="eyebrow">Secondo frammento</p>
+        <h2>L'adolescenza</h2>
+      </div>
+
+      <button class="diary-paper" data-diary="adolescence">
+        <span class="paper-label">Lettera incompiuta</span>
+        <span class="paper-symbol">✧</span>
+        <span>Leggi il ricordo</span>
+      </button>
+    </section>
+
+    <!-- ETA' ADULTA -->
+    <section id="adulthood" class="scene room">
+      <img class="scene-image"
+        src="images/Camera da letto gotica tra rose e candele.png"
+        alt="La camera da letto di Lyria">
+
+      <div class="room-title">
+        <p class="eyebrow">Terzo frammento</p>
+        <h2>L'età adulta</h2>
+      </div>
+
+      <button class="diary-paper" data-diary="adulthood">
+        <span class="paper-label">Diario personale</span>
+        <span class="paper-symbol">✧</span>
+        <span>Leggi il ricordo</span>
+      </button>
+    </section>
+
+    <!-- MATRIMONIO: STESSA CAMERA, ALTRO RICORDO -->
+    <section id="marriage" class="scene room">
+      <img class="scene-image"
+        src="images/Camera da letto gotica tra rose e candele.png"
+        alt="La camera nuziale">
+
+      <div class="room-title">
+        <p class="eyebrow">Quarto frammento</p>
+        <h2>Il matrimonio</h2>
+      </div>
+
+      <button class="diary-paper" data-diary="marriage">
+        <span class="paper-label">Una pagina macchiata</span>
+        <span class="paper-symbol">✧</span>
+        <span>Leggi il ricordo</span>
+      </button>
+    </section>
+
+    <!-- MARTIRIO -->
+    <section id="martyrdom" class="scene room">
+      <img class="scene-image"
+        src="images/Cattedrale gotica insanguinata al chiaroscuro.png"
+        alt="La sala del martirio">
+
+      <div class="room-title">
+        <p class="eyebrow">Quinto frammento</p>
+        <h2>Il Martirio</h2>
+      </div>
+
+      <button class="diary-paper bloodied" data-diary="martyrdom">
+        <span class="paper-label">L'ultima pagina</span>
+        <span class="paper-symbol">✧</span>
+        <span>Leggi il ricordo</span>
+      </button>
+    </section>
+
+    <!-- EPILOGO -->
+    <section id="epilogue" class="scene room">
+      <img class="scene-image"
+        src="images/Gemini_Generated_Image_e63mzee63mzee63m.jpeg"
+        alt="Un vampiro tiene Lyria fra le braccia">
+
+      <div class="room-title">
+        <p class="eyebrow">Ciò che resta dopo la fine</p>
+        <h2>La notte del salvataggio</h2>
+      </div>
+
+      <button class="diary-paper" data-diary="epilogue">
+        <span class="paper-label">Una nota senza firma</span>
+        <span class="paper-symbol">✧</span>
+        <span>Leggi l'ultima nota</span>
+      </button>
+    </section>
+
+    <!-- FOGLIO DEL DIARIO IN PRIMO PIANO -->
+    <div id="diary-modal" class="modal" aria-hidden="true">
+      <div class="modal-backdrop"></div>
+      <article class="diary-sheet" role="dialog"
+        aria-modal="true" aria-labelledby="diary-title">
+        <button id="close-diary" class="close-button"
+          aria-label="Chiudi il diario">✕</button>
+        <p class="eyebrow">Frammenti dal diario di Lyria</p>
+        <h2 id="diary-title">Pagina ritrovata</h2>
+        <div id="diary-content"></div>
+        <p class="signature">L.</p>
+      </article>
+    </div>
+
+    <!-- NAVIGAZIONE -->
+    <nav class="bottom-nav" aria-label="Navigazione">
+      <button id="back-hall" class="nav-button">
+        ← Torna al salone
+      </button>
+      <button id="restart" class="nav-button">
+        Ricomincia
+      </button>
+    </nav>
+
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
