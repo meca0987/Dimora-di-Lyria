@@ -154,3 +154,140 @@ document.querySelector('[data-diary="martyrdom"]')
 
 document.getElementById("intro").classList.add("active");
 document.querySelector(".bottom-nav").style.display = "none";
+
+/* AUDIO DELLA DIMORA DI LYRIA */
+
+const audioTracks = {
+  intro: "citta.mp3",
+  hall: "salone.mp3",
+  childhood: "infanzia.mp3",
+  adolescence: "adolescenza.mp3",
+  adulthood: "eta-adulta.mp3",
+  marriage: "matrimonio.mp3",
+  martyrdom: "martirio.mp3",
+  epilogue: "epilogo.mp3"
+};
+
+const narrationAudio = new Audio();
+narrationAudio.preload = "none";
+
+const backgroundMusic = new Audio("audio/musica.mp3");
+backgroundMusic.loop = true;
+backgroundMusic.volume = 0.28;
+
+function createAudioButton(label) {
+  const button = document.createElement("button");
+  button.textContent = label;
+  button.type = "button";
+  button.style.cssText = `
+    position: fixed;
+    z-index: 30;
+    right: 22px;
+    bottom: 82px;
+    padding: 12px 18px;
+    background: rgba(16, 8, 12, 0.92);
+    color: #ead8c4;
+    border: 1px solid #be9169;
+    cursor: pointer;
+    font: inherit;
+  `;
+  return button;
+}
+
+/* MUSICA DI SOTTOFONDO */
+
+const musicButton = createAudioButton("♫ Avvia la musica");
+musicButton.style.top = "18px";
+musicButton.style.bottom = "auto";
+document.body.appendChild(musicButton);
+
+musicButton.addEventListener("click", async () => {
+  if (backgroundMusic.paused) {
+    try {
+      await backgroundMusic.play();
+      musicButton.textContent = "♫ Metti in pausa la musica";
+    } catch (error) {
+      musicButton.textContent = "♫ Avvia la musica";
+    }
+  } else {
+    backgroundMusic.pause();
+    musicButton.textContent = "♫ Riprendi la musica";
+  }
+});
+
+/* NARRAZIONI */
+
+const voiceButtons = [];
+
+Object.entries(audioTracks).forEach(([sceneId, filename]) => {
+  const scene = document.getElementById(sceneId);
+  if (!scene) return;
+
+  const button = createAudioButton("♪ Ascolta la voce");
+
+  button.addEventListener("click", async () => {
+    if (
+      narrationAudio.dataset.currentScene === sceneId &&
+      !narrationAudio.paused
+    ) {
+      narrationAudio.pause();
+      narrationAudio.currentTime = 0;
+      button.textContent = "♪ Ascolta la voce";
+      return;
+    }
+
+    narrationAudio.pause();
+    narrationAudio.currentTime = 0;
+
+    voiceButtons.forEach(item => {
+      item.textContent = "♪ Ascolta la voce";
+    });
+
+    narrationAudio.src = `audio/${filename}`;
+    narrationAudio.dataset.currentScene = sceneId;
+
+    try {
+      await narrationAudio.play();
+      button.textContent = "♪ Interrompi la voce";
+    } catch (error) {
+      button.textContent = "♪ Riprova ad ascoltare";
+    }
+  });
+
+  scene.appendChild(button);
+  voiceButtons.push(button);
+});
+
+/* FINE NARRAZIONE */
+
+narrationAudio.addEventListener("ended", () => {
+  voiceButtons.forEach(button => {
+    button.textContent = "♪ Ascolta la voce";
+  });
+});
+
+/* CAMBIO STANZA */
+
+const previousShowScene = showScene;
+
+showScene = function(sceneId) {
+  narrationAudio.pause();
+  narrationAudio.currentTime = 0;
+
+  voiceButtons.forEach(button => {
+    button.textContent = "♪ Ascolta la voce";
+  });
+
+  previousShowScene(sceneId);
+};
+
+/* AVVIO MUSICA ALL'INGRESSO */
+
+document.getElementById("enter-house").addEventListener("click", () => {
+  if (backgroundMusic.paused) {
+    backgroundMusic.play().then(() => {
+      musicButton.textContent = "♫ Metti in pausa la musica";
+    }).catch(() => {});
+  }
+});
+
